@@ -22,9 +22,7 @@ const app = express();
 // }));
 
 const allowedOrigins = [
-  "https://wikcart-frontend.vercel.app",
-  "https://wikcart-frontend-c4l8.vercel.app",
-  "https://wikcart-frontend-imcl.vercel.app",
+"https://wikcart-frontend.vercel.app",
   "http://localhost:5173"
 ];
 
