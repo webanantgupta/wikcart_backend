@@ -6,14 +6,17 @@ const {
   getAllProducts,
   getProductById,
   deleteProductById,
-  updateProductById
+  updateProductById,
+  getAllProductsPublic
 } = require("../controllers/AddProductController");
 
 const upload = require("../middlewares/upload");
+const vendorAuth = require("../middlewares/vendorAuth");
 
-// CREATE
+// ================= CREATE PRODUCT =================
 router.post(
   "/create-product",
+  vendorAuth,
   upload.fields([
     { name: "thumbnail_image", maxCount: 1 },
     { name: "gallery_images", maxCount: 5 },
@@ -23,16 +26,37 @@ router.post(
   createProducts
 );
 
-// GET
-router.get("/get-products", getAllProducts);
-router.get("/getbyid/:id", getProductById);
+// ================= GET VENDOR PRODUCTS =================
 
-// DELETE
-router.delete("/deletebyid/:id", deleteProductById);
+router.get(
+  "/get-products",
+  vendorAuth,
+  getAllProducts
+);
 
-// UPDATE
+// ================= GET SINGLE PRODUCT =================
+
+router.get(
+  "/getbyid/:id",
+  vendorAuth,
+  getProductById
+);
+
+router.get("/all-products",getAllProductsPublic);
+
+// ================= DELETE PRODUCT =================
+
+router.delete(
+  "/deletebyid/:id",
+  vendorAuth,
+  deleteProductById
+);
+
+// ================= UPDATE PRODUCT =================
+
 router.put(
   "/updatebyid/:id",
+  vendorAuth,
   upload.fields([
     { name: "thumbnail_image", maxCount: 1 },
     { name: "gallery_images", maxCount: 5 },
