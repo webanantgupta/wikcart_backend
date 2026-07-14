@@ -89,8 +89,17 @@ exports.login = async (req, res) => {
 
     const user = result.rows[0];
 
+console.log("================================");
+console.log("User:", user);
+console.log("Entered Password:", password);
+console.log("Stored Hash:", user.password);
+
     // Compare password
     const isMatch = await bcrypt.compare(password, user.password);
+
+console.log("Password Match:", isMatch);
+console.log("Role:", user.role);
+console.log("================================");
 
     if (!isMatch) {
       return res.status(401).json({

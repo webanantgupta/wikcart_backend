@@ -13,13 +13,10 @@ const ComissionRouter = require("./routes/comissionRoute");
 const ReferralRoute = require("./routes/ReferralRoute")
 const CustomerRoute = require("./routes/CustomerRegisterRoute");
 const VendorRoute = require("./routes/VendorRoute");
-
+const adminRoute = require("./routes/adminRoutes");
 
 const app = express();
-// app.use(cors({
-//   origin: process.env.FRONTEND_URL || 'http://localhost:5173',
-//   credentials: true
-// }));
+
 
 const allowedOrigins = [
 "https://wikcart-frontend.vercel.app/",
@@ -41,7 +38,7 @@ app.use(
 
 
 app.use(express.json());
-
+app.use("/api/v1/admin",adminRoute);
 app.use("/api/v1",authRouter);
 app.use("/api/v2",addProductRouter);
 app.use("/api/v3",customerRouter);
