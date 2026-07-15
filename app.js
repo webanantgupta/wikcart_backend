@@ -19,7 +19,7 @@ const app = express();
 
 
 const allowedOrigins = [
-"https://wikcart-frontend.vercel.app/",
+"https://wikcart-frontend.vercel.app",
   "http://localhost:5173"
 ];
 
